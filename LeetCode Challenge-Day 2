@@ -1,0 +1,21 @@
+//2011. Final Value of Variable After Performing Operations
+//C++
+
+class Solution {
+public:
+    int finalValueAfterOperations(vector<string>& operations) {
+        string x;
+        int counter =0;
+        for(int i =0; i<operations.size(); i++){
+            x = operations[i];
+            if(x =="++X" || x =="X++"){
+                counter++;
+            }
+            else{
+                counter--;
+            }
+            
+        }
+        return counter;
+    }
+};
