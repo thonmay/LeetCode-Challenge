@@ -1,0 +1,18 @@
+//1662. Check If Two String Arrays are Equivalent
+
+C++
+class Solution {
+public:
+    bool arrayStringsAreEqual(vector<string>& word1, vector<string>& word2) {
+        string sumofWord1{}, sumofWord2{};
+        for(auto word: word1){
+            sumofWord1 = sumofWord1 + word;
+        }
+        for(auto word: word2){
+            sumofWord2 = sumofWord2 + word;
+        }
+        if(sumofWord1 == sumofWord2){
+            return true;
+        }else return false;
+    }
+}
