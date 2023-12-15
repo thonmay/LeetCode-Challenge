@@ -16,3 +16,19 @@ public:
         }else return false;
     }
 }
+
+// in java
+class Solution {
+    public boolean arrayStringsAreEqual(String[] word1, String[] word2) {
+        String sumofword1 = "";
+        String sumofword2 = "";
+        for(String word: word1){
+            sumofword1 += word;
+        }
+        for(String word: word2){
+            sumofword2 += word;
+        }
+        
+        return sumofword2.equals(sumofword1);
+    }
+}
