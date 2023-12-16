@@ -1,0 +1,43 @@
+#include<bits/stdc++.h>
+using namespace std;
+const int N = 1e3+10;
+vector<int> graph[N];    // implementing Graph using Adjacency List
+
+bool vis[N];          // visted array to keep track whether it's visited already or not
+
+void dfs(int vertex){
+    
+    //take action of vertex after entering vertex
+    vis[vertex] = true;          // making the current vertex as visited
+
+    for(auto child: graph[vertex]){
+        //take action on child before entering child node
+        if(vis[child]) continue;
+        dfs(child);
+
+        //take action on child after exiting child 
+    }
+    //take action on child after exiting vertex. This is when we have explored all the vertices
+}
+
+int main(){
+    int n, e;
+    cin>> n >> e;
+    for(int i = 0; i < e; i++){
+        int v1, v2;
+        cin>> v1 >> v2;
+        graph[v1].push_back(v2);
+        graph[v2].push_back(v1);
+    }
+
+    // Initialize vis array
+    memset(vis, false, sizeof(vis));
+    
+    int count = 0;
+    for(int i = 1; i <=n; ++i){
+        if(vis[i]) continue;       //checking if it's already visited or not
+        dfs(i); 				 // if DFS runs that means it's not visited yet
+        count++;				// so, we gonna increment the count
+    }
+    cout<< count;
+}
