@@ -16,3 +16,20 @@ public:
 };
 
 // time complexity --> O(n)
+
+//Second(optimized solution) with  O(log10(N)) time complexity
+
+if(x<0){               //negative num can't be palindromic
+            return false;
+        }
+        int original = x;     // storing the val of 'x' for comparison
+        long long int revNum = 0;
+        while(x > 0){
+            int lastDigit = x %10;   //getting the last digit
+            revNum = revNum * 10 + lastDigit;  //updating our revNum
+            x = x/10;                  // removing the last digit
+        }
+        if(original == revNum){
+            return true;
+        }else
+            return false;
