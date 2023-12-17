@@ -1,0 +1,18 @@
+//9. Palindrome Number
+
+C++
+class Solution {
+public:
+    bool isPalindrome(int x) {
+        string strNum = to_string(x);
+        int size = strNum.length();
+        for(int i =0; i < size/2; ++i){
+            if(strNum[i]!=strNum[size-1-i]){
+                return false;
+            }
+        }
+        return true;
+    }
+};
+
+// time complexity --> O(n)
