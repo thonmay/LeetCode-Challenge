@@ -1,0 +1,30 @@
+//2798. Number of Employees Who Met the Target
+
+//C++
+class Solution {
+public:
+    int numberOfEmployeesWhoMetTarget(vector<int>& hours, int target) {
+       int count = 0;
+       for(auto hour: hours){
+           if(hour>= target){
+               count++;
+           }
+       }
+       return count; 
+    }
+};
+
+//Time complexity --> O(N)
+
+//Java
+class Solution {
+    public int numberOfEmployeesWhoMetTarget(int[] hours, int target) {
+        int count=0;
+        for(int hour: hours){
+            if(hour>=target){
+                count++;
+            }
+        }
+        return count;
+    }
+}
