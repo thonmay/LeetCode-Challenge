@@ -1,0 +1,22 @@
+//2469. Convert the Temperature
+//Time complexity --> O(1)
+//C++
+class Solution {
+public:
+    vector<double> convertTemperature(double celsius) {
+       vector<double> temp{};    // to store and return the temp in K & F
+       double kelvin = celsius + 273.15;   //converting to K
+        temp.push_back(kelvin);           //inseting K to temp vec
+        double farenheit = (celsius * 1.80 + 32.00);   //converting to F
+        temp.push_back(farenheit);        // inserting F to our temp vec
+        return temp;             // returning temp vec
+
+    }
+};
+//java
+class Solution {
+    public double[] convertTemperature(double celsius) {
+        double[] ans = {(celsius + 273.15), (celsius * 1.80 + 32.00)};
+        return ans;
+    }
+}
