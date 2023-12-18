@@ -28,3 +28,13 @@ class Solution {
         return count;
     }
 }
+
+//C++ Time complexity --> O(long(N))
+class Solution {
+public:
+    int numberOfEmployeesWhoMetTarget(vector<int>& hours, int target) {
+        sort(hours.begin(), hours.end());   // sorting our vector
+        auto it = lower_bound(hours.begin(), hours.end(), target); // finding the lowest loc of the target val
+        return hours.size() - ( it - hours.begin());  // subtracting the length of the values which are lower than our target
+    }
+};
