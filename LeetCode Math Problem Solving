@@ -1,0 +1,32 @@
+//C++
+class Solution {
+public:
+    int differenceOfSum(vector<int>& nums) {
+        int elementSum=0;
+        int digitSum = 0;
+        for(auto num: nums){
+            elementSum += num;
+            while(num > 0){
+                int lastDigit = num %10;    //getting the last digit
+                digitSum += lastDigit;      // addding it to digit sum
+                num /=10;                   // remove the last digit 
+            }
+        }
+        return abs(elementSum-digitSum);          // returning the absolute value 
+    }
+};
+//java
+class Solution {
+    public int differenceOfSum(int[] nums) {
+        int arraySum=0, digitSum=0;
+        for(int num: nums){
+            arraySum +=num;        // adding num to arraySum in each iteration
+            while(num > 0){
+                digitSum += num%10;  // adding lastDigit to digitSum
+                num /=10;            // deleting lastDigit from num
+            }
+        }
+        return Math.abs(arraySum-digitSum);     // returning 'abs' val
+    }
+}
+// Time complexity -- O(N)
