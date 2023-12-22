@@ -1,0 +1,24 @@
+//REVERSING A STRING BY WORDS
+#include <bits/stdc++.h>
+using namespace std;
+
+int main(){
+    string s;
+    getline(cin, s);
+    vector<string> revStr {};         //to store words separetely 
+    int vecIndex = 0;                //to keep track of index in vector
+
+    for(int i =0; i < s.length(); ++i){     //traversing the whole given string
+        revStr.push_back("");        //initiasing to concatenate by adding an empty string
+        while(i < s.length() && s[i] != ' '){
+            revStr[vecIndex] += s[i]; // to adding chars until a WS
+            ++i;
+        }
+        vecIndex++;                  //incrementing index for the next word
+    }
+
+    for(int i = revStr.size() -1; i >=0; --i){
+        cout<<revStr[i] << " ";
+    }
+
+}
