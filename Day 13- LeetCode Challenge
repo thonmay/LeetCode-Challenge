@@ -1,0 +1,30 @@
+
+//2089. Find Target Indices After Sorting Array
+C++
+class Solution {
+public:
+    vector<int> targetIndices(vector<int>& nums, int target) {
+       vector<int> rst{};     //to store the index
+       sort(nums.begin(), nums.end());
+       for(int i = 0; i < nums.size(); ++i){
+           if(nums[i] == target){
+               rst.push_back(i);
+           }
+       }
+       return rst; 
+    }
+};
+//TIME COMPLEXITY : O(N*LOG(N))
+
+//Java
+class Solution {
+    public List<Integer> targetIndices(int[] nums, int target) {
+        List<Integer> rst = new ArrayList<>();
+        Arrays.sort(nums);
+        for(int i = 0; i < nums.length; ++i){
+            if(nums[i] == target){
+                rst.add(i);
+            }
+        }
+        return rst;
+    }
