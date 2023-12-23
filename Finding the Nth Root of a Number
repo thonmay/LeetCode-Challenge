@@ -1,0 +1,33 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+int sqrtOfNum(vector<int>& v, int num){
+    int low = 0, high = v.size()-1, mid;
+
+    while(low <= high){
+        mid = low+(high-low)/2;
+        if(v[mid] * v[mid] == num)    
+            return mid;
+        if(v[mid] * v[mid] > num)
+            high = mid -1;
+        else
+            low = mid+1;  
+    }
+    return -1;
+
+}
+
+int main(){
+    int sqrtNum; 
+    cin>>sqrtNum;             //let's say 9
+    vector<int> v {};         //monotonic vec
+    for(int i = 1; i <= sqrtNum;++i){
+        v.push_back(i);
+    }
+                        
+    int in = sqrtOfNum(v, sqrtNum);
+    if(in!=-1)
+        cout<<"value: "<<v[in];
+    else 
+        cout<<"NOT FOUND!";
+}
