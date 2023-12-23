@@ -1,3 +1,27 @@
+
+//Optimal Solution
+#include<bits/stdc++.h>
+using namespace std;
+
+double eps = 1e-6;            //here, 6 means we want 5 decimal points
+int main(){
+    double num;
+    cin>>num;
+    double low =1, high= num, mid;
+    
+    while(high-low > eps){        //until high-low is greater than eps, it won't terminate
+        mid = low+(high-low)/2;
+
+        if(mid*mid > num)
+            high = mid;         //not 'mid+1' for precision
+        else
+            low = mid;
+    }
+    cout<<fixed<<setprecision(5)<<high;         //up to how many decimal points? 
+}
+
+//MY FIRST TRY
+
 #include<bits/stdc++.h>
 using namespace std;
 
