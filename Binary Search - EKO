@@ -1,0 +1,38 @@
+#include<bits/stdc++.h>
+using namespace std;
+const int N = 1e6+10;
+long long n, m, height = 1e9;
+vector<long long> heightsOfTrees(N);                  //arr/vec to store the H of trees
+
+bool isWoodSufficient(long long h){                //creating a Predicate Func-a monotonic Func,-- T T T F F
+    long long woodCount = 0;
+    for(int i = 0; i < n; ++i){
+        if(heightsOfTrees[i] >= h){
+            woodCount += (heightsOfTrees[i] - h);
+        }
+    }
+    return woodCount >= m;
+}
+
+int main(){
+    cin >> n >>m;                                     //n=number of trees, m= amount of wood
+    for(int i = 0; i < n; ++i){
+        cin >> heightsOfTrees[i];
+    }
+    long long low = 0, high = height, mid;
+    while(high - low > 1){               //***high - low > 1*** better than low >= high;
+        mid = low+ (high-low)/2;
+        if(isWoodSufficient(mid)){
+            low = mid;
+        }else{
+            high = mid -1;
+        }
+    }                               //we'll be left with 2 elememnts are the while loop
+    if(isWoodSufficient(high)){                
+        cout<<high<<endl;
+    }else{
+        cout<<low<<endl;
+    }   
+        
+
+}
