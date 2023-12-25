@@ -29,6 +29,30 @@ public:
         }
         return v; 
     }
-    
-
 }
+//144. Binary Tree Preorder Traversal
+class Solution {
+public:
+    vector<int> v{};       //to store the data
+    vector<int> preorderTraversal(TreeNode* root) {
+        if(root != nullptr){
+            v.push_back(root->val);
+            preorderTraversal(root->left);
+            preorderTraversal(root-> right);
+        }
+        return v;
+    }
+};
+//145. Binary Tree Postorder Traversal            TIME COMPLEXTY --> O(N)
+class Solution {
+public:
+    vector<int> v{};
+    vector<int> postorderTraversal(TreeNode* root) {
+        if(root != nullptr){
+            postorderTraversal(root-> left);
+            postorderTraversal(root->right);
+            v.push_back(root->val);
+        }
+        return v;
+    }
+};
