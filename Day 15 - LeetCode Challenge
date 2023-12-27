@@ -1,0 +1,23 @@
+//226.Inverting a Binary tree
+
+class Solution {
+public:
+    TreeNode* invertTree(TreeNode* root) {
+       if(root == nullptr) return nullptr;      //base case
+
+       invertTree(root->right);                 //calling for the right sub-tree
+       invertTree(root->left);                  //calling for the left sub-tree
+
+        //swapping left & right sub-tree
+       /*
+       TreeNode* temp = root->left;
+       root->left = root-> right;
+       root->right = temp;
+        */
+       swap(root->left, root->right);
+
+       return root;  //returing root
+    }
+};
+
+//Time complexity --> O(h)
