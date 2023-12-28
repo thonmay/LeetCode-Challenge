@@ -1,0 +1,51 @@
+
+//first approach
+class Solution {
+public:
+    bool isValidBST(TreeNode* root) {
+        vector<int> v{};
+        inorderTraversal(root, v);
+        for (int i = 1; i < v.size(); ++i) {
+            if (v[i] <= v[i - 1]) {
+                return false;
+            }
+        }
+        
+        return true;
+    }
+
+    void inorderTraversal(TreeNode* root, vector<int> &v){
+        if(root != nullptr)
+        {
+            inorderTraversal(root->left, v);
+            v.push_back(root->val);
+            inorderTraversal(root->right, v);
+        }
+    }
+};
+
+//second approach
+
+class Solution {
+public:
+    bool isValidBST(TreeNode* root) {
+        return isBST(root, LONG_MIN, LONG_MAX); 
+    }
+
+    bool isBST(TreeNode* root, long long min, long long max)
+    {
+        //base case
+        if(root == nullptr) return true;
+
+        if(root->val > min && root->val < max)
+        {
+            //checking it's left & right child 
+            bool left = isBST(root->left, min, root-> val);
+            bool right = isBST(root->right, root-> val, max);
+
+            return left && right;
+        }
+        else
+            return false;
+    }
+};
