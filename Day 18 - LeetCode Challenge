@@ -1,0 +1,41 @@
+
+//230. Kth Smallest Element in a BST
+//C++
+class Solution {
+public:
+    int kthSmallest(TreeNode* root, int k) {
+        vector<int> v{};
+        inorderTraversal(root, v);
+
+        return v[k-1];
+    }
+
+    void inorderTraversal(TreeNode* root, vector<int> &v)
+    {
+        //base case
+        if(root == nullptr) return;
+
+        inorderTraversal(root->left, v);
+        v.push_back(root->val);
+        inorderTraversal(root->right, v);
+    }
+};
+
+//Java
+class Solution {
+    public int kthSmallest(TreeNode root, int k) {
+        ArrayList<Integer> arr = new ArrayList<Integer>();
+        inorderTraversal(root, arr);
+        return arr.get(k-1);
+    }
+
+    public void inorderTraversal(TreeNode root, ArrayList<Integer> arr)
+    {
+        if(root == null) return;
+
+        inorderTraversal(root.left, arr);
+        arr.add(root.val);
+        inorderTraversal(root.right, arr);
+        
+    }
+}
