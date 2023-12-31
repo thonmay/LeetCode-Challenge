@@ -1,0 +1,71 @@
+//450. Delete Node in a BST
+
+int minValBST(TreeNode* root){
+    if (root == nullptr) {
+        // Handle the case when the tree is empty
+        return -1;  // Or any other appropriate value or signal
+    }
+
+    TreeNode* temp = root;
+    while(temp->left != nullptr){            //until it reaches the end
+        temp = temp->left;                   //keep moving LEFT
+    }
+    return (temp->val);                        //return temp, which is storing the min value
+
+}
+
+
+class Solution {
+public:
+    TreeNode* deleteNode(TreeNode* root, int key) {
+        //4 cases 
+            //First Case, when root is null
+        if(root == nullptr) return root;
+            //Second Case, when key lies in the Left Sub-tree
+        if (root->val > key) {
+            root->left = deleteNode(root->left, key);
+        } 
+            //Third Case, when key lies in the Right Sub-tree
+        else if (root->val < key)
+        {
+            root->right = deleteNode(root->right, key);
+        }
+            //Fourth & Final Case, when Root value is same as key, when we'll preform deletion
+        else
+        {
+            //3 Cases for Deletion
+            //Leaf Node (0 child)
+            if(root->left == nullptr && root->right == nullptr)
+            {
+                delete root;
+                return nullptr;
+            }
+            //1 Child (LC or RC)
+            if(root->left == nullptr && root->right != nullptr)
+            {
+                TreeNode* temp = root->right;
+                delete root;
+                return temp;
+            }
+            if(root->left != nullptr && root->right == nullptr)
+            {
+                TreeNode* temp = root->left;
+                delete root;
+                return temp;
+            }
+            //2 Child
+            if(root->left != nullptr && root->right != nullptr)
+            {
+                int min = minValBST(root->right);
+                root->val = min;
+                root->right = deleteNode(root->right, min);
+                return root;
+            }
+
+        }
+        
+        return root;
+        
+
+    }
+};
