@@ -1,0 +1,28 @@
+//1832. Check if the Sentence Is Pangram
+//Solution 1
+C++
+class Solution {
+public:
+    bool checkIfPangram(string sentence) {
+        vector<bool> v(26, false);
+
+        for(auto ch: sentence)
+        {
+            v[ch - 'a'] = true;
+        } 
+        for(auto i: v)
+        {
+            if(i == false)
+                return false;
+        }
+        return true;
+    }
+};
+//Solution 2
+class Solution {
+public:
+    bool checkIfPangram(string sentence) {        
+        unordered_set <char> st(sentence.begin() , sentence.end());
+        return st.size() == 26;
+    }
+};
