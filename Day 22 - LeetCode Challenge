@@ -1,0 +1,50 @@
+//771. Jewels and Stones
+//Time Complexity --> O(n)
+Java
+class Solution {
+    public int numJewelsInStones(String jewels, String stones) {
+        Map<Character, Integer> m = new HashMap();
+        int cnt = 0;
+
+        for(char ch: stones.toCharArray())
+        {
+            m.put(ch, m.getOrDefault(ch, 0) + 1);
+        }
+
+        for(char ch: jewels.toCharArray())
+        {
+            if(m.containsKey(ch)){
+                cnt += m.get(ch);
+            }
+        }
+        return cnt;
+
+    }
+}
+
+//Less Efficient
+C++
+class Solution {
+public:
+    int numJewelsInStones(string jewels, string stones) {
+        unordered_map<char, int> um;
+        int output = 0;
+
+       //looping throgh Stones string
+       for(auto ch: stones)
+       {    
+           um[ch]++;
+       }
+       for(auto i: um)
+       {    
+           for(auto ch: jewels)
+           {
+               if(i.first == ch)
+               {
+                   output += i.second;
+               }
+           }
+       }
+       return output;
+    }
+};
