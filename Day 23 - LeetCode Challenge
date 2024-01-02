@@ -42,3 +42,19 @@ public:
         
     }
 };
+
+//Solution 2: Concise approach
+class Solution {
+public:
+    ListNode* middleNode(ListNode* head) {
+        
+        int len = length(head);
+
+        for (int i = 1; i <= len / 2; i++)
+            head = head->next;
+
+        return head;
+        
+        
+    }
+};
