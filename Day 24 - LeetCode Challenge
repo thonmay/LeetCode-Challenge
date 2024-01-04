@@ -4,15 +4,23 @@
 class Solution {
 public:
     ListNode* reverseList(ListNode* head) {
+        //when it's empty or only 1 node; no need to reverse it
+        if(head == nullptr || head->next == nullptr)
+            return head;
+        //using 2 pointers to keep track of previous and current node
         ListNode* prev = nullptr;
         ListNode* curr = head;
         while(curr != nullptr)
-        {
+        {   
+            //storing the address of the next node of current node, otherise we gonna lose the rest of the nodes
             ListNode* forward = curr->next;
+            //current node will point to its previous node
             curr->next = prev;
+            //incrementing prev and current temporary nodes
             prev = curr;
             curr = forward;
         }
+        //after coming out of the while loop, prev will point to the last node(tail) of the list
         return prev;
     }
 };
