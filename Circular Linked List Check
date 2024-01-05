@@ -1,0 +1,23 @@
+/* Should return true if linked list is circular, else false */
+bool isCircular(Node *head)
+{
+   //Empty list
+   if(head == nullptr)
+        return true;
+    //1 node
+    if(head->next == nullptr)
+        return false;
+    if(head->next == head)
+        return true;
+    //More than 1 nodes
+    Node* temp = head->next;
+    while( temp != nullptr && temp !=head )
+    {
+        temp = temp -> next;
+    }
+    //when loop terminates
+    if(temp == nullptr)
+        return false;
+    if(temp == head)
+        return true;   
+}
