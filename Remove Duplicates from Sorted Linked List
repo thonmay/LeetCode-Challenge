@@ -1,0 +1,46 @@
+//83. Remove Duplicates from Sorted List     Time Complexity --> O(n) Space Complexity O(1)
+//Java
+class Solution {
+    public ListNode deleteDuplicates(ListNode head) {
+        if(head == null) return head;
+        if(head.next == null) return head;
+
+        ListNode curr = head;
+        while(curr != null && curr.next != null)
+        {
+            if(curr.val == curr.next.val)
+            {
+                ListNode duplicate = curr.next;
+                curr.next = duplicate.next;
+                duplicate = null;
+            }
+            else
+                curr = curr.next;
+        }
+        return head;
+
+    }
+}
+
+//C++
+class Solution {
+public:
+    ListNode* deleteDuplicates(ListNode* head) {
+        if(head == nullptr) return head;
+        if(head->next == nullptr) return head;
+        
+        ListNode* curr = head;
+        while(curr != nullptr && curr->next != nullptr)
+        {
+            if(curr->val == curr->next->val)
+            {
+                ListNode* duplicate = curr->next;
+                curr->next = duplicate->next;
+                duplicate = nullptr;
+            }
+            else
+                curr = curr -> next;
+        }
+        return head;
+    }
+};
