@@ -1,0 +1,36 @@
+142. Linked List Cycle II
+
+class Solution {
+public:
+    ListNode *detectCycle(ListNode *head) {
+       if(head == nullptr) return head;
+       if(head -> next == nullptr) return nullptr;
+       if(head -> next == head) return head;
+       
+       ListNode* slow = head;
+       ListNode* fast = head;
+       while(fast != nullptr)
+       {
+           slow = slow->next;
+           fast = fast->next;
+           if(fast == nullptr)
+           {
+               return nullptr;
+           }
+           else 
+            fast = fast -> next; 
+           
+           if(fast == slow)
+           {
+               slow = head;
+               while(fast != slow)
+               {
+                   slow = slow->next;
+                   fast = fast->next;
+               }
+               return slow;
+           }
+       }
+       return nullptr; 
+    }
+};
