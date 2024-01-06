@@ -1,0 +1,53 @@
+//141. Linked List Cycle
+
+//Detect Cycle in a Linked List            Time Complexity -- O(N) & Space Complexity O(N)
+
+bool detectLoop(Node* head)
+    {
+        // your code here
+        map<Node*, bool> visited;
+
+        Node* temp = head;
+        while (temp != nullptr) {
+            if (visited[temp] == true) {
+                // If the node is already visited, there is a cycle
+                return true;
+            }
+
+            // Mark the current node as visited
+            visited[temp] = true;
+
+            // Move to the next node
+            temp = temp->next;
+        }
+
+        // If the loop completes, there is no cycle
+        return false;
+    }
+
+//Using Floyd's Cycle Detection Algorithom               Time Complexity -- O(N) & Space Complexity O(1)
+class Solution {
+public:
+    bool hasCycle(ListNode *head) {
+       if(head == nullptr) return false;
+       if(head -> next == nullptr) return false;
+       if(head -> next == head) return true;
+       
+       ListNode* slow = head;
+       ListNode* fast = head;
+       while(fast != nullptr)
+       {
+           slow = slow->next;
+           fast = fast->next;
+           if(fast == nullptr)
+           {
+               return false;
+           }
+           else 
+            fast = fast -> next; 
+           
+           if(fast == slow) return true;
+       }
+       return false; 
+    }
+};
