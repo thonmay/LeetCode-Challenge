@@ -1,0 +1,68 @@
+//Remove duplicates from an unsorted linked list(geeksforgeeks)     Time Complexity -- O(n) & Space Complexity --> O(n)
+
+//Solution 1(Using temp pointer only)  
+Node * removeDuplicates( Node *head) 
+  {
+      // your code goes here
+      if(head == nullptr || head->next == nullptr) return head;
+      map<int, bool> visited;
+      
+      Node* temp = head;
+      visited[temp->data] = true;
+      
+      while(temp->next != nullptr)
+      {   
+          
+          if(visited[temp->next->data] == true)
+          {
+              //delete
+              Node* nodeToDel = temp->next;
+              temp->next = forward->next;
+              delete nodeToDel;
+              nodeToDel = nullptr;
+              
+          }
+          else
+          {
+              visited[temp->next->data] = true;
+              temp = temp->next;
+          }
+                
+        }
+        return head;
+
+
+//Solution 2 (Using Previous Pointer)
+
+Node * removeDuplicates( Node *head) 
+    {
+        // your code goes here
+        if(head == nullptr || head->next == nullptr) return head;
+        map<int, bool> visited;
+        
+        Node* temp = head;
+        Node* prev = nullptr;
+        
+        while(temp != nullptr)
+        {   
+            
+            if(visited[temp->data] == true)
+            {
+                //delete
+                Node* nodeToDel = temp;
+                Node* forward = temp->next;
+                prev->next = forward;
+                delete nodeToDel;
+                nodeToDel = nullptr;
+                temp = forward;
+                
+            }
+            else
+            {
+                visited[temp->data] = true;
+                prev = temp;
+                temp = temp->next;
+            }
+                
+        }
+        return head;
