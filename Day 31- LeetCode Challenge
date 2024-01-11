@@ -1,4 +1,5 @@
-//2. Add Two Numbers
+
+//2. Add Two Numbers                                  Time Complexity -- O(n+m) Space Complexity O(n)
 class Solution {
 public:
     ListNode* addTwoNumbers(ListNode* l1, ListNode* l2) {
@@ -35,6 +36,36 @@ public:
     }
 };
 
+//Java
+class Solution {
+    public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
+        //create a dummy node & tail 
+        ListNode dummy = new ListNode();
+        ListNode tail = dummy;
+        int carry = 0;
+        while(l1 != null || l2 != null || carry != 0)
+        {
+            int sum = 0;
+            if(l1 != null)
+            {
+                sum += l1.val;
+                l1 = l1.next;
+            }
+            if(l2 != null)
+            {
+                sum += l2.val;
+                l2 = l2.next;
+            }
+            sum += carry;
+            carry = sum /10;
+            ListNode temp = new ListNode(sum % 10);
+            tail.next = temp;
+            tail = temp;
+
+        }
+        return dummy.next;
+    }
+}
 
 // Another Solution
 
