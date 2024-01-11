@@ -1,0 +1,130 @@
+//2. Add Two Numbers
+class Solution {
+public:
+    ListNode* addTwoNumbers(ListNode* l1, ListNode* l2) {
+        
+        ListNode* dummy = new ListNode();
+        ListNode* tail = dummy;
+        int carry = 0;
+        while(l1 || l2 || carry != 0)
+        {
+            int sum = 0;
+            if(l1)
+            {
+                sum = sum + l1->val;
+                l1 = l1->next;
+            }
+            if(l2)
+            {
+                sum = sum + l2->val;
+                l2 = l2->next;
+            }
+            sum = carry + sum;
+            int digit = sum % 10;
+            carry = sum / 10;
+            ListNode* temp = new ListNode(digit);
+            tail->next = temp;
+            tail = temp;
+            
+
+        }
+        ListNode* ans = dummy->next;
+        delete dummy;
+        return ans;
+
+    }
+};
+
+
+// Another Solution
+
+class Solution {
+private:
+    ListNode* getReverse(ListNode* head)
+    {
+        ListNode* prev = nullptr;
+        ListNode* curr = head;
+        ListNode* next = nullptr;
+        while(curr != nullptr)
+        {
+            next = curr->next;
+            curr->next = prev;
+            prev = curr;
+            curr = next;
+        }
+        return prev;
+    }
+
+    ListNode* add(ListNode* revL1, ListNode* revL2, ListNode* &ans)
+    {
+        int carry = 0, sum, lastDigit;
+        ListNode* ansHead = nullptr; ListNode* ansTail = nullptr;
+        while(revL1 && revL2)
+        {   
+            sum = (revL1->val + revL2->val + carry);
+            lastDigit = (sum % 10);
+            insertAtTail(ansHead, ansTail, lastDigit);
+            carry = sum/10;
+            //updating pointers
+            revL1 = revL1->next;
+            revL2 = revL2->next;
+        }
+        while(revL1 != nullptr)
+        {
+            sum = carry + revL1->val;
+            lastDigit = sum % 10;
+            insertAtTail(ansHead, ansTail, lastDigit);
+            carry = sum /10;
+            revL1 = revL1->next;
+        }
+        while(revL2 != nullptr)
+        {
+            sum = carry + revL2->val;
+            lastDigit = sum % 10;
+            insertAtTail(ansHead, ansTail, lastDigit);
+            carry = sum / 10;
+            revL2 = revL2 ->next;
+        }
+        while(carry != 0)
+        {
+            insertAtTail(ansHead, ansTail, carry);
+            carry /= 10;
+        }
+        ans = ansHead;
+        return ans;
+
+    }
+    ListNode* insertAtTail(ListNode* &head, ListNode* &tail, int data)
+    {
+        ListNode* temp = new ListNode(data);
+        if(!head)
+        {
+            head = temp;
+            tail = temp;
+        }
+        else
+        {
+            tail->next = temp;
+            tail = temp;
+        }
+        return head;
+
+
+
+    }
+public:
+    ListNode* addTwoNumbers(ListNode* l1, ListNode* l2) {
+       //Step 1: Reverse the LLs
+       ListNode* revL1 = getReverse(l1);
+       ListNode* revL2 = getReverse(l2); 
+
+       //Step 2: Add the LLs
+        ListNode* ans = nullptr;
+        
+        add(revL1, revL2, ans);
+
+        //Step 3: Reverse the ans LL
+        return ans;
+        
+    }
+};
